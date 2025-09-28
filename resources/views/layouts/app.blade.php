@@ -15,7 +15,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        {{-- MUDANÇA 1: A div principal se torna uma coluna flexível --}}
+        <div class="min-h-screen flex flex-col bg-gray-100">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -31,6 +32,20 @@
             <main>
                 {{ $slot }}
             </main>
+
+            {{-- MUDANÇA 2: A classe 'mt-auto' (margin-top: auto) empurra o footer para o final do container flexível --}}
+            <footer class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 py-4">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center text-sm text-gray-500">
+                        &copy; {{ date('Y') }} Barbearia SaaS. Todos os direitos reservados. 
+                        Desenvolvido por 
+                        <a href="https://www.linkedin.com/in/victor-hugo-ferreira-36b089278/" 
+                            class="underline hover:text-gray-700">
+                             Victor Hugo Campos Ferreira
+                        </a>
+                    </div>
+                </div>
+            </footer>
         </div>
     </body>
 </html>
