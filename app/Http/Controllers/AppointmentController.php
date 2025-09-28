@@ -39,7 +39,7 @@ class AppointmentController extends Controller
             'user_id' => 'required|exists:users,id',
             'start_time' => 'required|date',
             'notes' => 'nullable|string',
-        ])
+        ]); // <-- ERRO 1 CORRIGIDO: Faltava o ponto e vírgula aqui.
 
         $data = $request->all();
         $data['end_time'] = Carbon::parse($data['start_time'])->addHour();
@@ -54,7 +54,7 @@ class AppointmentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Este método geralmente não é usado em CRUDs simples, pode deixar vazio.
     }
 
     /**
@@ -66,14 +66,14 @@ class AppointmentController extends Controller
         $employees = User::orderBy('name')->get();
         return view('appointments.edit', compact('appointment', 'clients', 'employees'));
     }
-    {
-        //
-    }
+
+    // <-- ERRO 2 CORRIGIDO: As chaves { } que estavam sobrando aqui foram removidas.
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    // ERRO 5 CORRIGIDO: A assinatura foi corrigida para usar Route Model Binding.
+    public function update(Request $request, Appointment $appointment)
     {
         $request->validate([
             'client_id' => 'required|exists:clients,id',
@@ -93,7 +93,8 @@ class AppointmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($Appointment $appointment)
+    // ERRO 3 CORRIGIDO: O tipo da variável agora é 'Appointment' com 'A' maiúsculo.
+    public function destroy(Appointment $appointment)
     {
         $appointment->delete();
         return back()->with('success', 'Agendamento deletado com sucesso!');
@@ -104,8 +105,8 @@ class AppointmentController extends Controller
         $todayAppointments = Appointment::with(['client', 'user'])
             ->whereDate('start_time', Carbon::today())
             ->orderBy('start_time', 'asc')
-            ->get()
+            ->get(); // <-- ERRO 4 CORRIGIDO: Faltava o ponto e vírgula aqui.
+
         return view('dashboard', compact('todayAppointments'));
     }
-
 }

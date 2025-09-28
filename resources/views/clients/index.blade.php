@@ -9,6 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+
+                    {{-- BOTÃO DE NOVO CLIENTE --}}
                     <div class="mb-4">
                         <a href="{{ route('clients.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             + Novo Cliente
@@ -38,6 +40,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $client->phone }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $client->email }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        {{-- BOTÕES DE AÇÃO (EDITAR E EXCLUIR) --}}
                                         <a href="{{ route('clients.edit', $client) }}" class="text-indigo-600 hover:text-indigo-900 mr-4">Editar</a>
                                         <form action="{{ route('clients.destroy', $client) }}" method="POST" class="inline-block" onsubmit="return confirm('Tem certeza que deseja excluir este cliente?');">
                                             @csrf

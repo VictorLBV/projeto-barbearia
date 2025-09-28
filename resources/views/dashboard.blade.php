@@ -31,6 +31,11 @@
                                     <p class="text-sm text-gray-500">
                                         Barbeiro: {{ $appointment->user->name }}
                                     </p>
+                                    @if ($appointment->notes)
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            <strong>Observações:</strong> {{ $appointment->notes }}
+                                        </p>
+                                    @endif
                                 </div>
                             </li>
                         @empty
